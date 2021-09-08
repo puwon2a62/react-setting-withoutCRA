@@ -26,6 +26,13 @@ CRA없이 react 초기 셋팅을 진행한 프로젝트입니다.
 ├─ tsconfig.json
 ├─ package.json
 ```
+> `touch README.md`
+> `touch .gitignote`
+> `touch tsconfig.json`
+> `mkdir src`
+> `cd srd`
+> `touch index.tsx`
+> `touch index.html`
 
 
 ### .gitignore
