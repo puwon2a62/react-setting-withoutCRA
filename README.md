@@ -101,15 +101,6 @@ render(<div>Hello ReactJS</div>, document.getElementById(
 
 `npm run start` 후에 http://localhost:1234 접속
 
-
-
-
-
-
-
-
-
-
 ## eslint 설정
 
 `npx eslint --init`
@@ -159,15 +150,6 @@ render(<div>Hello ReactJS</div>, document.getElementById(
 const a:String = "aaa";
 ```
 eslint 에러 발생 확인
-
-
-
-
-
-
-
-
-
 
 ## Prettier, StandardJS 설정
 
@@ -230,3 +212,85 @@ module.exports = {
 }
 ```
 
+## styled-components, react-router, component, page 구조 설정
+
+`npm install styled-components @types/styled-components --save-dev`
+
+`npm install styled-reset --save-dev`
+
+`npm install react-router-dom @types/react-router-dom --save-dev`
+
+`npm install react-redux @types/react-redux --save-dev`
+
+### 절대경로 설정
+
+`tsconfig.json`
+
+```json
+{
+    "compilerOptions": {
+        "esModuleInterop": true,
+        "jsx": "react",
+        "module": "CommonJS",
+        "strict": true,
+        "target": "ES5",
+        "baseUrl": ".",
+        "paths": {
+            "~*": [
+                "src/*"
+            ]
+        }
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
+```
+
+### .eslintrc.js # import React from 'react' 에러 수정
+```js
+...
+  rules: {
+    'no-useless-constructor': 'off',
+    '@typescript-eslint/no-useless-constructor': 'error',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error']
+  }
+...
+```
+
+### 폴더 구조
+```sh
+├─ src
+├─ ├─ Application
+├─ ├─ ├─ Styles
+│  │  │  │  Style.tsx
+│  │  │  │  theme.ts
+│  │  │  │  themed-components.ts
+│  │  │ Application.tsx
+│  │  │ index.tsx
+├─ ├─ Component
+├─ ├─ ├─ TempComponent
+│  │  │  │  TempComponent.tsx
+│  │  │  │  index.tsx
+├─ ├─ Pages
+├─ ├─ ├─ MainPage
+│  │  │  │  MainPage.tsx
+│  │  │  │  index.tsx
+├─ ├─ Router
+│  │  │ Router.tsx
+│  │  │ index.tsx
+│  │  index.html
+│  │  index.tsx
+├─ README.md
+├─ .gitignore
+├─ tsconfig.json
+├─ .eslintrc.js
+├─ package.json
+```
+> 소스코드 github 참고
