@@ -92,6 +92,11 @@ render(<div>Hello ReactJS</div>, document.getElementById(
 
 
 
+
+
+
+
+
 ## eslint 설정
 
 `npx eslint --init`
@@ -140,7 +145,15 @@ render(<div>Hello ReactJS</div>, document.getElementById(
 ```ts
 const a:String = "aaa";
 ```
-eslint 에러 발생
+eslint 에러 발생 확인
+
+
+
+
+
+
+
+
 
 
 ## Prettier, StandardJS 설정
