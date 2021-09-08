@@ -1,7 +1,5 @@
 import React from 'react'
 import { render } from 'react-dom'
+import Application from './Application'
 
-render(
-  <div>Hello ReactJS</div>,
-  document.getElementById('root') as HTMLElement
-)
+render(<Application />, document.getElementById('root'))

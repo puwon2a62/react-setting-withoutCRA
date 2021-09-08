@@ -5,6 +5,17 @@
         "module": "CommonJS",
         "strict": true,
         "target": "ES5",
-        "outDir": "./dist"
-    }
+        "baseUrl": ".",
+        "paths": {
+            "~*": [
+                "src/*"
+            ]
+        }
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
 }
