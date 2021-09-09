@@ -1,9 +1,11 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 const TempComponent = () => {
+  const { t } = useTranslation('common')
   return (
         <div>
-            Test MainPage
+            {t('mainPage.mainPageText')}
         </div>
   )
 }
