@@ -50,7 +50,7 @@ CRA없이 react 초기 셋팅을 진행한 프로젝트입니다.
 ```
 
 ### index.tsx
-```js
+```ts
 import React from 'react'
 import { render } from 'react-dom'
 
@@ -294,4 +294,110 @@ module.exports = {
 ├─ .eslintrc.js
 ├─ package.json
 ```
-> 소스코드 github 참고
+> 소스코드 github 참고  
+
+## 다국어 (i18N 설정)  
+`npm install i18next --save-dev`  
+`npm install react-i18next --save-dev`  
+
+### json import 설정  
+`tsconfig.json`  
+```json
+{
+    "compilerOptions": {
+        ...
+        "resolveJsonModule": true,
+        ...
+    }
+}
+```
+
+### i18N 설정  
+`src/locales/ko-KR.json`  
+```json
+{
+    "mainPage": {
+        "mainPageText": "메인페이지 테스트 텍스트"
+    }
+}
+```  
+
+`src/I18N/I18N.ts`  
+```ts
+import i18n from 'i18next'
+import * as ko from '~locales/ko-KR.json`
+
+i18n.init({
+  lng: 'ko',
+  interpolation: {
+    escapeValue: true
+  },
+  resources: {
+    ko: {
+      common: ko
+    }
+  }
+})
+
+export default i18n
+```  
+
+`src/I18/index.ts`  
+```ts
+export { default } from './I18N'
+export * from './I18N'
+```  
+
+`src/Application/Provider.tsx`  
+```ts
+import React from 'react'
+import { I18nextProvider } from 'react-i18next'
+import i18n from '~I18N'
+
+const Provider = ({ children }: { children: React.ReactNode }) =>
+  <I18nextProvider i18n = {i18n}>
+    {children}
+  </I18nextProvider>
+
+export default Provider
+```  
+
+`src/Application/Application.tsx`  
+```ts
+import React from 'react'
+import Router from '~Router'
+import GlobalStyle from './Styles/Style'
+import theme from './Styles/theme'
+import { ThemeProvider } from './Styles/themed-components'
+import Provider from './Provider'
+
+const Application = () =>
+  <>
+  <Provider>
+    <GlobalStyle />
+      <ThemeProvider theme={theme}>
+        <Router />
+      </ThemeProvider>
+  </Provider>
+  </>
+
+export default Application
+```  
+
+### i18N 사용법  
+`src/Component/TempComponent/TempComponent.tsx`  
+```ts
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+
+const TempComponent = () => {
+  const { t } = useTranslation('common')
+  return (
+    <div>
+      {t('mainPage.mainPageText')}
+    </div>
+  )
+}
+
+export default TempComponent
+```
